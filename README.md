@@ -32,6 +32,8 @@ decide (com critério) para qual etapa do funil o lead deve ir.
 | [`AGENTE.md`](AGENTE.md) | Instruções de comportamento do agente (passo a passo + regras) |
 | [`TESTES.md`](TESTES.md) | Cenários de teste v1 e notas das rodadas executadas contra o Kommo real |
 | [`.claude/commands/atualizar-lead.md`](.claude/commands/atualizar-lead.md) | Slash command que dispara o fluxo |
+| [`.claude/agents/revisor-pipeline.md`](.claude/agents/revisor-pipeline.md) | Subagente que audita se as ações seguem as regras invioláveis (só leitura) |
+| [`.claude/agents/verificador-fluxo.md`](.claude/agents/verificador-fluxo.md) | Subagente que confirma tecnicamente que a atualização foi gravada (só leitura) |
 
 ## Status
 
