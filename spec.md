@@ -39,8 +39,10 @@ Você, um SDR/BDR em qualquer operação (não é exclusivo de uma empresa ou pr
 
 ## 6. Changelog
 
-### v1.0 (atual)
+### v1.0 (concluída em 15/07)
 - Preenchimento de card via áudio, com decisão de etapa baseada em contexto das observações. Kommo apenas.
+- Fluxo de disparo: manual via Claude Code + Claude in Chrome, formalizado no comando `/atualizar-lead`.
+- Validada em 3 rodadas de teste contra o Kommo real (ver TESTES.md): identificação de lead, extração e preenchimento de campos, avanço de etapa com confiança, e transição para "No Show".
 
 ### v1.1 (planejado)
 - Organização de cadências: rastreamento de tag D1–D6, prazos e avisos de vencimento.
