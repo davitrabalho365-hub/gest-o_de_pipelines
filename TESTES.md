@@ -42,7 +42,7 @@ dito.
 avançar.
 **Espero:** move o card para a etapa correta.
 **Não aceito:** mover para etapa errada, ou não mover quando era claro.
-**Status:** ✅ (rodada anterior, card já estava na etapa correta ao ser identificado)
+**Status:** ✅ (validado na rodada 2 — ver notas de execução)
 
 ### Teste 6 — Sem confiança, não decide
 **Dado:** narração + observações que não dão informação suficiente.
@@ -64,3 +64,11 @@ ligação com o lead, cotando preços, comparando concorrentes, sem anúncio
 atendimento comercial). Sem data/próximo passo mencionado — sistema não
 moveu a etapa e registrou nota com origem e timestamp, sem apagar histórico
 anterior. Nenhum ajuste necessário na AGENTE.md até aqui.
+
+### Rodada 2 — 15/07 — mesmo card, avanço de etapa
+Narração: Luiz ligou de volta, confirmou que quer seguir com a proposta, e
+combinou reunião para quinta-feira 17/07 às 15h. Sistema extraiu data e
+próximo passo claramente, registrou nota com origem/timestamp mantendo o
+histórico anterior, e moveu o card de "Tentativa de contato" para "Agendado"
+com confiança justificada na própria nota. Teste 5 confirmado. Nenhum ajuste
+necessário na AGENTE.md.
