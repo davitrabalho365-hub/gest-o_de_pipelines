@@ -24,6 +24,11 @@ ativa do Chrome — não é preciso perguntar qual lead é, nem buscar por nome.
 3. **Preencher os campos certos** do card com o que foi extraído (data no
    campo de data, próximo passo em observação/tarefa, etc. — nunca tudo
    jogado num campo de texto livre só).
+   - **Data combinada → campo "Próximo agendamento".** Sempre que a narração
+     trouxer uma data/hora de retorno ou reunião, preencha o campo estruturado
+     "Próximo agendamento" do card, além de registrar na nota. Não deixe a data
+     só no texto da nota: o Kommo usa esse campo para lembretes e filtros, e
+     deixá-lo em branco quando havia data é considerado campo não preenchido.
 4. **Decidir a etapa**, cruzando a narração nova com as observações já
    existentes no card:
    - Se há confiança clara (ex: "confirmou reunião pra quinta") → mover o
