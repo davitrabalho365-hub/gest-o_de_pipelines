@@ -29,13 +29,13 @@ durante a montagem dos fixtures (`D4` e `D5` ainda não existem).
 **Dado:** cards de teste com tags D1–D6 aplicadas (pelo menos dois Ds diferentes).
 **Espero:** o agente identifica corretamente em qual D cada lead está, lendo as tags.
 **Não aceito:** confundir a tag D com outras tags do card, ou chutar um D para lead sem tag.
-**Status:** ☐
+**Status:** ✅ (identificou D1/D2/D3/D6 nos 4 fixtures e detectou tag solta "d" sem confundi-la com tag de cadência)
 
 ### Teste 2 — Lead em dia (nota de hoje)
 **Dado:** lead em Dn com nota de interação datada de hoje (registrada via `/atualizar-lead`).
 **Espero:** status "em dia" — o toque do dia conta como cumprido pela nota (fonte primária).
 **Não aceito:** marcar como vencido um lead cujo toque está evidenciado por nota de hoje.
-**Status:** ☐
+**Status:** ✅ (Teste Cad A classificado em dia pela nota de toque D2 de 15/07)
 
 ### Teste 3 — Toque cumprido só por tarefa concluída
 **Dado:** lead sem nota de hoje, mas com tarefa do Kommo concluída hoje (ex: por automação).
@@ -48,13 +48,13 @@ durante a montagem dos fixtures (`D4` e `D5` ainda não existem).
 **Espero:** status "vencido", indicando desde quando.
 **Não aceito:** considerar cumprido por inferência ("provavelmente falou com ele") sem
 evidência no card.
-**Status:** ☐
+**Status:** ✅ (Teste Cad C: D3 previsto 14/07 sem evidência → vencido há 1 dia)
 
 ### Teste 5 — Vencendo hoje
 **Dado:** lead cujo dia previsto do D atual é hoje, ainda sem toque registrado.
 **Espero:** status "vencendo hoje" — distinto de vencido.
 **Não aceito:** classificar como vencido antes do dia acabar, ou omitir do relatório.
-**Status:** ☐
+**Status:** ✅ (Teste Cad B: D1 previsto hoje sem toque → "vencendo hoje", distinto de vencido)
 
 ## Bloco B — Relatório sob demanda
 
@@ -63,7 +63,7 @@ evidência no card.
 **Espero:** relatório lista vencidos + vencendo hoje, priorizável (vencidos primeiro,
 mais antigos no topo), sem incluir os em dia.
 **Não aceito:** lista incompleta, leads em dia poluindo o relatório, ou ordem aleatória.
-**Status:** ☐
+**Status:** ✅ (vencido primeiro, vencendo hoje depois, em dia excluído; nenhum card alterado durante o relatório)
 
 ### Teste 7 — Filtros por responsável e funil
 **Dado:** leads de responsáveis e funis diferentes no mesmo cenário do Teste 6.
@@ -103,7 +103,7 @@ resposta ao longo da cadência).
 sem resposta).
 **Não aceito:** marcar como perdido sem desinteresse explícito, ou deixar o lead "preso"
 em D6 sem sinalização.
-**Status:** ☐
+**Status:** ⚠️ (sinalização correta no relatório: Teste Cad D apontado para nutrição, não perdido; a movimentação em si ainda não foi executada — testar como ação separada)
 
 ### Teste 12 — Desinteresse explícito → perdido
 **Dado:** narração com desinteresse claro (ex: "disse que não quer, já fechou com outro"),
@@ -125,3 +125,14 @@ onde está.
 ## Notas de execução
 
 (preencher a cada rodada, como no TESTES.md da v1 — incluindo falhas e ajustes gerados)
+
+### Rodada 1 — 15/07 — relatório sob demanda contra os 4 fixtures
+Primeira rodada usando o subagente `revisor-pipeline` para a varredura card a card
+(leitura por texto, sem screenshots) — só o consolidado voltou ao contexto principal
+(~17k tokens no contexto isolado do subagente). Classificação bateu 100% com o gabarito:
+A em dia (excluído do relatório), B vencendo hoje, C vencido há 1 dia, D sinalizado para
+nutrição. Testes 1, 2, 4, 5 e 6 ✅; Teste 11 ⚠️ (sinalização ok, movimentação pendente).
+Bônus: o subagente detectou uma tag solta "d" no Teste Cad C (resíduo de digitação do
+setup) sem confundi-la com tag de cadência — remover essa tag na limpeza dos fixtures.
+Pendentes para as próximas rodadas: toque via tarefa (3), filtros (7), avanço/salto de
+tag (8, 9, 10), perdido (12) e fim ambíguo (13).
