@@ -28,6 +28,7 @@ decide (com critério) para qual etapa do funil o lead deve ir.
 
 | Arquivo | O que é |
 |---------|---------|
+| [`JORNADA_V1.md`](JORNADA_V1.md) | Playbook: como a v1 foi construída, por quê, e como copiar essa estrutura |
 | [`spec.md`](spec.md) | Especificação completa: escopo, critérios de sucesso, changelog de versões |
 | [`AGENTE.md`](AGENTE.md) | Instruções de comportamento do agente (passo a passo + regras) |
 | [`TESTES.md`](TESTES.md) | Cenários de teste v1 e notas das rodadas executadas contra o Kommo real |
