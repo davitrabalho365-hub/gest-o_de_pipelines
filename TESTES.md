@@ -72,3 +72,14 @@ próximo passo claramente, registrou nota com origem/timestamp mantendo o
 histórico anterior, e moveu o card de "Tentativa de contato" para "Agendado"
 com confiança justificada na própria nota. Teste 5 confirmado. Nenhum ajuste
 necessário na AGENTE.md.
+
+### Rodada 3 — 15/07 — mesmo card, caso de "No Show"
+Narração: chegou o horário da reunião marcada (quinta 17/07, 15h) e o Luiz
+não apareceu; tentativa de ligação e WhatsApp sem resposta. Sistema
+registrou a nota com origem/timestamp, preservando histórico, e moveu o
+card de "Agendado" para "No Show" com base no fato relatado (ausência na
+reunião), sem inventar motivo. Interessante: ao entrar em "No Show", o
+próprio Kommo disparou automaticamente uma tarefa de acompanhamento
+("Ligar para remarcar + Mensagem WhatsApp") — confirma que a automação
+nativa do funil reage corretamente à mudança de etapa feita pelo agente.
+Nenhum ajuste necessário na AGENTE.md.
