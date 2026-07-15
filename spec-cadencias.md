@@ -22,18 +22,41 @@ saber quem contatar primeiro.
 
 - **D1–D6 = dias de follow-up.** Cada D representa um toque previsto num dia da sequência.
 - **Tags nativas do card** marcam em qual D o lead está.
-- **Avanço D → D+1 é por ação:** o lead só passa para o próximo D quando o toque daquele
-  dia é efetivamente cumprido. Tempo passando sozinho não avança a cadência.
+- **Contagem:** o relógio da cadência começa na **entrada do lead na cadência** (quando
+  recebe a primeira tag D), não na criação do lead.
+- **Avanço é por ação, não por tempo:** o lead só passa para o próximo D quando o toque é
+  efetivamente cumprido. Tempo passando sozinho não avança a cadência.
+- **Não é linear:** pode pular D (ex: D2 → D4) desde que haja critério claro registrado
+  para o salto. Sem critério, avança sequencial.
 - **Vencimento:** o dia previsto para o D atual chegou (ou passou) e o toque não foi
   cumprido → o lead está vencido naquela etapa da cadência.
+- **Fim da cadência (pós-D6):** o lead sai da cadência para **nutrição** ou **perdido**,
+  conforme o critério: cadência completa sem resposta → nutrição; desinteresse explícito
+  em qualquer ponto → perdido. Sem confiança em nenhum dos dois → sinaliza revisão manual
+  (mesma regra de confiança da v1).
+
+### Como o agente sabe que um toque foi cumprido (duplo cheque)
+
+O SDR não tem o hábito de concluir tarefas no CRM — e não deve precisar criar esse hábito.
+A evidência de toque vem de dois sinais, em ordem de prioridade:
+
+1. **Notas registradas no card** (fonte primária): cada atualização via `/atualizar-lead`
+   grava uma nota datada com origem. Uma nota de interação datada de hoje = toque de hoje
+   cumprido. O fluxo da v1 já produz esse rastro sem esforço extra.
+2. **Tarefas concluídas no Kommo** (sinal secundário): quando existirem (ex: concluídas
+   por automação nativa), contam como confirmação adicional.
+
+Se nenhum dos dois sinais existe para o dia previsto, o toque é considerado não cumprido.
 
 ## 4. Escopo (v1.1 — cadências)
 
 - Ler as tags D1–D6 dos cards.
 - Determinar o status de cada lead na cadência: em dia / vencendo hoje / vencido.
-- Gerar um **relatório sob demanda** (via comando) listando vencidos e vencendo, de forma
-  priorizável.
+- Gerar um **relatório sob demanda** (via comando) listando **vencidos + vencendo hoje**,
+  com filtro por **responsável** e por **funil**, de forma priorizável.
 - Avançar a tag D do lead quando um toque é cumprido, registrando a origem da mudança.
+- Ao final da cadência (ou diante de desinteresse explícito), encaminhar o lead para
+  nutrição ou perdido conforme o critério — ou sinalizar revisão manual sem confiança.
 
 ## 5. Fora de escopo
 
@@ -49,10 +72,14 @@ saber quem contatar primeiro.
    cada um.
 2. O agente determina quem está vencido (o dia do D passou sem toque cumprido) e quem vence
    hoje.
-3. O relatório sob demanda lista esses leads de forma clara e priorizável.
+3. O relatório sob demanda lista esses leads de forma clara e priorizável, e filtra
+   corretamente por responsável e por funil quando pedido.
 4. Quando um toque é cumprido, a tag do lead avança para o próximo D, com origem registrada.
+   Saltos (ex: D2 → D4) só acontecem com critério claro, registrado na nota.
 5. O agente não avança nem marca como vencido nada por conta própria — só reflete o que os
-   dados (tags, tempo, toques cumpridos) mostram.
+   dados (tags, notas datadas, tarefas concluídas) mostram.
+6. Pós-D6 (ou desinteresse explícito), o lead é encaminhado para nutrição ou perdido
+   conforme o critério — e sem confiança, sinaliza revisão manual em vez de decidir.
 
 ## 7. Regras invioláveis
 
@@ -62,21 +89,22 @@ Herda as 5 regras invioláveis da v1 (ver `spec.md`), e acrescenta:
 7. Não dispara nenhum toque — só lê, reporta status e atualiza a tag.
 8. Sempre registra a origem ao mudar a tag (ex: nota "cadência avançada para D3 via ...").
 
-## 8. A validar (assunções a confirmar antes de escrever os testes)
+## 8. Decisões tomadas (15/07)
 
-Estas são decisões que ainda dependem de você. A spec assume um caminho, mas confirme ou
-corrija cada ponto:
+Pontos que estavam em aberto e foram definidos com o usuário:
 
-- **Contagem do dia:** a partir de quando conta o D1 — entrada na cadência? criação do
-  lead? primeiro contato? E são dias corridos ou dias úteis?
-- **Como o agente sabe que o toque foi cumprido:** tarefa marcada como concluída no Kommo?
-  Uma nota? Você fala na narração ("fiz o follow-up do Fulano hoje")?
-- **Depois do D6:** o lead sai da cadência? Vira outra coisa (ex: nutrição, perdido)?
-- **Pode pular D?** Ou a sequência é sempre D1 → D2 → ... → D6 sem saltos?
-- **Escopo do relatório:** quer vencidos e vencendo-hoje juntos, ou só vencidos? Filtra por
-  responsável / funil?
+1. **Contagem do D1:** começa na entrada do lead na cadência (primeira tag D), não na
+   criação do lead. *(Pendente menor: confirmar dias corridos vs. úteis — assumido
+   corridos até segunda ordem.)*
+2. **Detecção de toque cumprido:** duplo cheque — notas datadas do card (fonte primária,
+   produzidas naturalmente pelo fluxo da v1) + tarefas concluídas no Kommo (sinal
+   secundário). O SDR não precisa concluir tarefas manualmente no CRM.
+3. **Pós-D6:** nutrição (cadência completa sem resposta) ou perdido (desinteresse
+   explícito); sem confiança, revisão manual.
+4. **Saltos:** permitidos com critério claro registrado; sem critério, sequencial.
+5. **Relatório:** vencidos + vencendo hoje, com filtros por responsável e funil.
 
 ## 9. Changelog
 
-### v1.1 — cadências (em especificação)
+### v1.1 — cadências (especificada em 15/07, aguardando testes)
 - Rastreamento de tags D1–D6, cálculo de vencimento e relatório sob demanda.
