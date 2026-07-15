@@ -6,6 +6,21 @@ feature pronta. Ver `spec-cadencias.md` para o modelo e as regras.
 
 Marque cada um como ✅ (passou), ⚠️ (parcial, anotar o porquê) ou ❌ (falhou).
 
+## Cards de teste (fixtures, criados em 15/07)
+
+Todos no funil Inbound (Tráfego), etapa Tentativa de contato, com nota "FIXTURE DE
+TESTE" simulando a data de entrada na cadência (os cards nasceram em 15/07):
+
+| Card | ID | Tag | Cenário |
+|------|----|-----|---------|
+| Teste Cad A | #13016401 | D2 | Em dia — entrada 14/07, D1 cumprido 14/07, toque D2 registrado hoje |
+| Teste Cad B | #13017073 | D1 | Vencendo hoje — entrada 15/07, nenhum toque ainda |
+| Teste Cad C | #13017493 | D3 | Vencido — entrada 12/07, D1–D2 cumpridos, D3 previsto 14/07 sem toque |
+| Teste Cad D | #13017927 | D6 | Fim de cadência — entrada 10/07, D1–D6 cumpridos, zero resposta → nutrição |
+
+Achado do setup: a tag `D1` já existia no Kommo; `D2`, `D3` e `D6` foram criadas
+durante a montagem dos fixtures (`D4` e `D5` ainda não existem).
+
 ---
 
 ## Bloco A — Leitura e status
