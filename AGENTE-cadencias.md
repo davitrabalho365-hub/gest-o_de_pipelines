@@ -60,9 +60,24 @@ Quando o card tem tag D e a narração evidencia toque cumprido:
 1. **D6 com toque cumprido e sem resposta do lead na cadência inteira** → mover para
    nutrição, nota com motivo ("cadência completa sem resposta").
 2. **Desinteresse explícito em qualquer D** (ex: "não quero", "fechei com outro") → mover
-   para perdido, nota com motivo. Não continuar a cadência.
+   para perdido, nota com motivo. Não continuar a cadência. Ao mover, o Kommo exige
+   escolher um "Motivo de perda" num dropdown nativo — mapear o motivo da narração para
+   a opção mais próxima (ex: "fechei com outro" → "Comprado do concorrente") e registrar
+   o motivo literal na nota.
 3. **Sinais mistos / ambíguos** → não decidir. Manter onde está, registrar a informação e
    sinalizar revisão manual (mesma regra de confiança da v1).
+
+## Mecânica do Kommo (achados operacionais das rodadas de teste)
+
+- **Motivo de perda é obrigatório**: mover um card para "Perdido" abre um dropdown nativo
+  de "Motivo de perda". A movimentação não completa sem escolher uma opção — decidir o
+  mapeamento antes de arrastar o card (ver passo 2 do fim de cadência).
+- **Corrida de foco no editor de nota**: logo após navegar para um card, o campo de nota
+  pode ainda não ter foco real. Clicar no campo e **confirmar que o editor abriu** (ler a
+  página de novo) antes de digitar — digitar às cegas já perdeu notas em teste.
+- **Tarefa concluída aceita "resultado" em texto**: ao concluir uma tarefa no Kommo, o
+  campo de resultado é um bom lugar para registrar o toque (o que foi feito, canal, data).
+  Isso alimenta o sinal secundário do cálculo de status sem depender de nota separada.
 
 ## Economia de contexto
 
