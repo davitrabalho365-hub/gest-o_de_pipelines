@@ -44,9 +44,12 @@ Você, um SDR/BDR em qualquer operação (não é exclusivo de uma empresa ou pr
 - Fluxo de disparo: manual via Claude Code + Claude in Chrome, formalizado no comando `/atualizar-lead`.
 - Validada em 3 rodadas de teste contra o Kommo real (ver TESTES.md): identificação de lead, extração e preenchimento de campos, avanço de etapa com confiança, e transição para "No Show".
 
-### v1.1 (planejado)
-- Organização de cadências: rastreamento de tag D1–D6, prazos e avisos de vencimento.
-- Enriquecimento de dados de leads (1x por semana, segunda às 14:30h).
+### v1.1 (em andamento)
+- Organização de cadências — concluída (ver `spec-cadencias.md`): tags D1–D6, relatório
+  sob demanda via `/cadencias`, modo loop e formato de saída (v1.1.1).
+- Enriquecimento de leads — redefinido em 16/07 (ver `spec-enriquecimento.md`):
+  padronização interna nota → campo, sob demanda via `/enriquecer`, sem busca externa.
+  O horário fixo ("1x por semana, segunda às 14:30h") foi descartado como automação.
 
 ### v1.2 (planejado)
 - Visibilidade do pipeline: leitura do que v1 e v1.1 produziram, apresentada de forma legível.
