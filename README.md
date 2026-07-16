@@ -53,24 +53,3 @@ decide (com critério) para qual etapa do funil o lead deve ir.
 Só Kommo. Só áudio/narração (sem imagens ou prints). Acionado sob demanda por você
 (não faz varredura automática de WhatsApp nem roda sozinho 24/7). Não envia mensagens
 nem age fora do CRM.
-
-## Convenções de git
-
-Adotadas em 16/07 (commits anteriores ficam como estão — sem reescrever histórico).
-
-**Commits** — `tipo: descrição no imperativo`, primeira linha até ~50 caracteres,
-descrevendo *o quê* (não *como*). Um commit = uma ideia coesa.
-
-| Prefixo | Quando usar |
-|---------|-------------|
-| `feat:` | Nova funcionalidade |
-| `fix:` | Correção de algo quebrado |
-| `docs:` | Só documentação |
-| `chore:` | Configs, limpeza, tarefas sem efeito funcional |
-| `refactor:` | Reorganização sem mudar comportamento |
-| `test:` | Cenários de teste (TESTES*.md) |
-
-**Branches** — trabalho novo nasce em branch própria, nomeada `tipo/nome-curto`
-(ex: `fix/formato-relatorio`, `feat/enriquecimento-leads`). Valida contra o Kommo
-real, depois merge na `main`. A `main` fica sempre íntegra e sincronizada com o
-GitHub (`git push` após cada merge).
