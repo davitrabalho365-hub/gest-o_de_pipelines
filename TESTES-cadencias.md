@@ -18,8 +18,15 @@ TESTE" simulando a data de entrada na cadência (os cards nasceram em 15/07):
 | Teste Cad C | #13017493 | D3 | Vencido — entrada 12/07, D1–D2 cumpridos, D3 previsto 14/07 sem toque |
 | Teste Cad D | #13017927 | D6 | Fim de cadência — entrada 10/07, D1–D6 cumpridos, zero resposta → nutrição |
 
-Achado do setup: a tag `D1` já existia no Kommo; `D2`, `D3` e `D6` foram criadas
-durante a montagem dos fixtures (`D4` e `D5` ainda não existem).
+Fixtures adicionados na rodada 2:
+
+| Card | ID | Tag | Cenário |
+|------|----|-----|---------|
+| Teste Cad E | #13027305 | D6 | Fim ambíguo — uma resposta "depois vemos" (D3), silêncio depois → revisão manual |
+| Teste Cad F | #13027693 | D4 | Em dia via tarefa — sem nota de interação hoje, toque D4 evidenciado por tarefa concluída |
+
+Achado do setup: a tag `D1` já existia no Kommo; `D2`, `D3`, `D4`, `D5` e `D6` foram
+criadas durante a montagem dos fixtures — agora a estrutura D1–D6 está completa.
 
 ---
 
@@ -41,7 +48,7 @@ durante a montagem dos fixtures (`D4` e `D5` ainda não existem).
 **Dado:** lead sem nota de hoje, mas com tarefa do Kommo concluída hoje (ex: por automação).
 **Espero:** o sinal secundário conta — toque considerado cumprido.
 **Não aceito:** exigir nota quando há tarefa concluída evidenciando o toque.
-**Status:** ☐
+**Status:** ✅ (Teste Cad F: D4 previsto hoje, sem nota de interação, tarefa concluída com resultado do toque → em dia)
 
 ### Teste 4 — Vencido (nenhum sinal no dia previsto)
 **Dado:** lead cujo dia previsto do D atual já passou, sem nota nem tarefa concluída nesse dia.
@@ -79,20 +86,20 @@ traz apenas os correspondentes.
 **Espero:** tag avança para Dn+1, com nota registrando a origem do avanço.
 **Não aceito:** avançar sem evidência de toque, esquecer a nota de origem, ou remover a
 tag antiga sem colocar a nova.
-**Status:** ☐
+**Status:** ✅ (Teste Cad B: nota do toque D1 às 21:05, tag D1→D2 confirmada pelo verificador-fluxo)
 
 ### Teste 9 — Salto com critério
 **Dado:** lead em D2 cuja narração traz critério claro para pular (ex: lead pediu retorno
 só na semana que vem → D4).
 **Espero:** salto D2 → D4 com o critério registrado na nota.
 **Não aceito:** saltar sem critério registrado, ou recusar salto quando o critério é claro.
-**Status:** ☐
+**Status:** ✅ (Teste Cad A: lead pediu retorno 18/07 = dia previsto de D5 → salto D2→D5 com critério na nota)
 
 ### Teste 10 — Tempo sozinho não avança
 **Dado:** lead em D1 há 3 dias, sem nenhum toque registrado.
 **Espero:** continua em D1 (vencido) — o agente reporta o atraso, não "corrige" a tag.
 **Não aceito:** avançar a tag para compensar o tempo passado.
-**Status:** ☐
+**Status:** ✅ (Teste Cad C: vencido em D3, tag mantida em D3 até haver evidência ou decisão — nunca "corrigida" por tempo)
 
 ## Bloco D — Fim de cadência
 
@@ -103,14 +110,14 @@ resposta ao longo da cadência).
 sem resposta).
 **Não aceito:** marcar como perdido sem desinteresse explícito, ou deixar o lead "preso"
 em D6 sem sinalização.
-**Status:** ⚠️ (sinalização correta no relatório: Teste Cad D apontado para nutrição, não perdido; a movimentação em si ainda não foi executada — testar como ação separada)
+**Status:** ✅ (rodada 2: Teste Cad D movido para "Nutrição" com nota de fechamento; verificado pelo verificador-fluxo)
 
 ### Teste 12 — Desinteresse explícito → perdido
 **Dado:** narração com desinteresse claro (ex: "disse que não quer, já fechou com outro"),
 em qualquer D.
 **Espero:** encaminhado para perdido, com o motivo registrado.
 **Não aceito:** insistir na cadência (avançar D) depois de desinteresse explícito.
-**Status:** ☐
+**Status:** ✅ (Teste Cad C: desinteresse explícito → "Perdido" com motivo "Comprado do concorrente", sem avançar cadência)
 
 ### Teste 13 — Fim ambíguo → revisão manual
 **Dado:** lead ao fim do D6 com sinais mistos (ex: respondeu uma vez "depois vemos", nunca
@@ -118,7 +125,7 @@ mais).
 **Espero:** não decide entre nutrição e perdido — sinaliza revisão manual, mantendo o lead
 onde está.
 **Não aceito:** chutar um destino sem confiança.
-**Status:** ☐
+**Status:** ✅ (Teste Cad E: uma resposta "depois vemos" + silêncio → mantido na etapa, nota "REVISÃO MANUAL NECESSÁRIA")
 
 ---
 
@@ -136,3 +143,20 @@ Bônus: o subagente detectou uma tag solta "d" no Teste Cad C (resíduo de digit
 setup) sem confundi-la com tag de cadência — remover essa tag na limpeza dos fixtures.
 Pendentes para as próximas rodadas: toque via tarefa (3), filtros (7), avanço/salto de
 tag (8, 9, 10), perdido (12) e fim ambíguo (13).
+
+### Rodada 2 — 15/07 — ações de escrita (avanço, salto, destinos) contra os fixtures
+Executados os 7 testes pendentes menos o de filtros. Resultados: toque via tarefa
+concluída (3 ✅, card F), avanço sequencial D1→D2 com nota (8 ✅, card B), salto
+D2→D5 com critério do lead (9 ✅, card A), tag vencida não "corrigida" por tempo
+(10 ✅, card C), fim de cadência → Nutrição (11 ✅, card D), desinteresse explícito →
+Perdido com motivo "Comprado do concorrente" (12 ✅, card C), fim ambíguo → revisão
+manual sem mover (13 ✅, card E). Todas as 5 escritas verificadas pelo subagente
+`verificador-fluxo` em contexto isolado (~20k tokens lá): etapa, tag e nota bateram
+em 100% dos cards, histórico preservado. Limpeza: tag solta "d" removida do card C.
+Teste 7 (filtros) segue pendente — os fixtures têm um único responsável e funil, o que
+não permite provar ausência de vazamento; testar quando houver dados de mais de um
+responsável. Achados operacionais do Kommo: (a) mover para "Perdido" exige escolher
+"Motivo de perda" num dropdown nativo — mapear o motivo da narração para as opções;
+(b) o editor de nota tem uma corrida de foco após navegar para o card — clicar no campo
+e só digitar depois de confirmar o editor aberto (2 notas se perderam e foram refeitas);
+(c) concluir tarefa aceita um "resultado" em texto — bom lugar para registrar o toque.
