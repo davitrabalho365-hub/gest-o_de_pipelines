@@ -16,6 +16,9 @@ Dois modos de acionamento, sempre sob demanda:
    um lead que está na cadência (tem tag D). O avanço da tag é um passo adicional do
    fluxo da v1, não um fluxo separado.
 
+O relatório também pode rodar em **modo loop** (`/loop 3h /cadencias`): é o mesmo gatilho
+1, repetido em intervalo fixo enquanto a sessão estiver aberta — ver a seção "Modo loop".
+
 ## Como calcular o status de um lead na cadência
 
 Para cada lead com tag D1–D6:
@@ -42,6 +45,23 @@ Nunca inferir toque sem evidência no card ("provavelmente falou") — sem sinal
    - depois os vencendo hoje;
    - cada linha: lead, D atual, dias de atraso (se houver), último toque registrado.
 4. O relatório é leitura — **não alterar nenhum card durante o relatório**.
+
+## Modo loop (relatório recorrente)
+
+Quando o `/cadencias` roda via `/loop` (ex: `/loop 3h /cadencias` de manhã, na abertura
+da sessão):
+
+1. **Primeiro ciclo:** relatório completo, igual ao sob demanda.
+2. **Ciclos seguintes:** liderar com o **delta** — o que mudou desde o último ciclo
+   (quem saiu da fila por toque registrado, quem venceu agora, quem passou a vencer
+   hoje). A fila completa vem depois, resumida.
+3. Cada ciclo continua **somente leitura** — as regras do relatório valem inalteradas.
+   O loop não dá ao agente nenhum poder novo; ele serve à meta operacional do usuário
+   (critério de sucesso 7 da spec), não a persegue por conta própria.
+4. O loop vive dentro da sessão: o usuário abre, o usuário encerra. Sem sessão aberta,
+   nada roda (fora de escopo da spec, seção 5).
+5. Pré-requisitos por ciclo: Chrome logado no Kommo. Se o acesso falhar num ciclo,
+   reportar a falha e seguir para o próximo — não tentar contornar login.
 
 ## Passos — Avanço de cadência (dentro do /atualizar-lead)
 

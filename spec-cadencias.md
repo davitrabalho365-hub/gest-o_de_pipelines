@@ -54,13 +54,18 @@ Se nenhum dos dois sinais existe para o dia previsto, o toque é considerado nã
 - Determinar o status de cada lead na cadência: em dia / vencendo hoje / vencido.
 - Gerar um **relatório sob demanda** (via comando) listando **vencidos + vencendo hoje**,
   com filtro por **responsável** e por **funil**, de forma priorizável.
+- **Modo loop:** repetir o relatório em intervalo fixo dentro de uma sessão aberta pelo
+  usuário (ex: `/loop 3h /cadencias`). O loop nasce e morre com a sessão — é o mesmo
+  relatório sob demanda, repetido; não muda o que o agente pode fazer.
 - Avançar a tag D do lead quando um toque é cumprido, registrando a origem da mudança.
 - Ao final da cadência (ou diante de desinteresse explícito), encaminhar o lead para
   nutrição ou perdido conforme o critério — ou sinalizar revisão manual sem confiança.
 
 ## 5. Fora de escopo
 
-- Checagem automática / agendada rodando sozinha (fica para versão futura).
+- Checagem rodando sozinha **sem sessão aberta pelo usuário** (agendamento na nuvem,
+  execução 24/7). O modo loop dentro de uma sessão que o usuário abriu e pode encerrar
+  está dentro do escopo; autonomia além disso fica para versão futura.
 - Disparar os toques (mandar WhatsApp, e-mail, ligar) — continua valendo a regra da v1:
   **nada fora do CRM**. A cadência só é lida e marcada, nunca executada pelo agente.
 - Criar a estrutura de cadência do zero — assume-se que as tags D1–D6 já estão em uso.
@@ -80,6 +85,9 @@ Se nenhum dos dois sinais existe para o dia previsto, o toque é considerado nã
    dados (tags, notas datadas, tarefas concluídas) mostram.
 6. Pós-D6 (ou desinteresse explícito), o lead é encaminhado para nutrição ou perdido
    conforme o critério — e sem confiança, sinaliza revisão manual em vez de decidir.
+7. **Meta operacional (do usuário, não do agente):** nenhum lead vencido fica sem toque
+   até as 10h da manhã. O modo loop serve a essa meta dando visibilidade recorrente da
+   fila — quem cumpre o toque é o SDR. O agente não persegue a meta por conta própria.
 
 ## 7. Regras invioláveis
 
@@ -104,7 +112,22 @@ Pontos que estavam em aberto e foram definidos com o usuário:
 4. **Saltos:** permitidos com critério claro registrado; sem critério, sequencial.
 5. **Relatório:** vencidos + vencendo hoje, com filtros por responsável e funil.
 
+Definidos em 16/07:
+
+6. **Loop, não goal:** a recorrência do relatório é enquadrada como **loop** (repetição
+   determinística do `/cadencias` em intervalo fixo, dentro de sessão aberta), e não como
+   goal com autonomia. Motivo: a regra 7 impede o agente de agir sobre a fila — um agente
+   com objetivo e sem poder de ação tende a "ajudar demais", que é fora de escopo desde a
+   v1. A meta ("fila de vencidos zerada até as 10h") é do usuário e virou o critério de
+   sucesso 7; o loop é só o mecanismo de visibilidade. Autonomia sobre a fila, se um dia
+   fizer sentido, é conversa de v2 com spec própria.
+
 ## 9. Changelog
 
 ### v1.1 — cadências (especificada em 15/07, aguardando testes)
 - Rastreamento de tags D1–D6, cálculo de vencimento e relatório sob demanda.
+
+### v1.1 — modo loop (16/07)
+- Relatório recorrente via `/loop <intervalo> /cadencias` dentro de sessão aberta.
+- Meta operacional do usuário (fila de vencidos zerada até as 10h) registrada como
+  critério de sucesso 7.
