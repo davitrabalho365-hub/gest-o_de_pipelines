@@ -144,7 +144,7 @@ opcional de uma linha antes) e um parágrafo final de **até 250 caracteres** co
 crítico do dia (ou "Sem pontos críticos hoje.").
 **Não aceito:** texto corrido além do parágrafo final, parágrafo acima de 250 caracteres,
 seções extras, ou detalhes (IDs, evidências) sem o usuário pedir.
-**Status:** ☐
+**Status:** ✅ (16/07: varredura real dos 31 Outbound D1 → placar + tabela de 3 colunas + parágrafo de 232 caracteres, sem seções extras)
 
 ---
 
