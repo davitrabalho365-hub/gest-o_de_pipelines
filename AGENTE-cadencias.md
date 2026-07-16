@@ -78,6 +78,10 @@ Quando o card tem tag D e a narração evidencia toque cumprido:
 - **Tarefa concluída aceita "resultado" em texto**: ao concluir uma tarefa no Kommo, o
   campo de resultado é um bom lugar para registrar o toque (o que foi feito, canal, data).
   Isso alimenta o sinal secundário do cálculo de status sem depender de nota separada.
+- **Excluir leads exige 2FA na sessão**: a ação "excluir" da lista só completa se a sessão
+  logada tiver autenticação de dois fatores ativa — sem 2FA, o Kommo bloqueia após a
+  confirmação. A exclusão não é permanente: leads excluídos ficam recuperáveis pelo filtro
+  "Excluídos" da visualização de Lista.
 
 ## Economia de contexto
 
