@@ -131,3 +131,9 @@ Definidos em 16/07:
 - Relatório recorrente via `/loop <intervalo> /cadencias` dentro de sessão aberta.
 - Meta operacional do usuário (fila de vencidos zerada até as 10h) registrada como
   critério de sucesso 7.
+
+### v1.1.1 — fix: formato de saída do relatório (16/07)
+- O relatório vinha em texto corrido com parágrafos de 300+ caracteres. Formato fixado:
+  tabela (Lead | Cadência | Vencimento) + um parágrafo de até 250 caracteres com o ponto
+  crítico do dia. Definido no AGENTE-cadencias.md ("Formato de saída") e testado pelo
+  Teste 14.
