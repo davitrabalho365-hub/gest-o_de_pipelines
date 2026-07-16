@@ -38,7 +38,9 @@ Nunca inferir toque sem evidência no card ("provavelmente falou") — sem sinal
 
 ## Passos — Relatório sob demanda
 
-1. Aplicar os filtros pedidos (responsável, funil). Sem filtro → tudo que tem tag D.
+1. Aplicar os filtros pedidos (responsável, funil). Sem filtro → tudo que tem tag D,
+   **somente entre leads ativos** — cards fechados (Venda/Perdido) ficam fora mesmo que
+   ainda carreguem tag D (ex: fixtures arquivados).
 2. Calcular o status de cada lead (seção acima).
 3. Montar o relatório com **vencidos + vencendo hoje** (os em dia ficam de fora):
    - vencidos primeiro, do atraso mais antigo para o mais recente;

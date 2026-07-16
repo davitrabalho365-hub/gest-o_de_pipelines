@@ -28,10 +28,13 @@ Fixtures adicionados na rodada 2:
 Achado do setup: a tag `D1` já existia no Kommo; `D2`, `D3`, `D4`, `D5` e `D6` foram
 criadas durante a montagem dos fixtures — agora a estrutura D1–D6 está completa.
 
-Limpeza (15/07, após a rodada 2): Teste Cad A, B, E e F excluídos pelo usuário. Pendentes
-de exclusão: Teste Cad C (fechado em Perdido), Teste Cad D (Nutrição) e Teste Luiz 1245
-(No Show) — a exclusão via agente foi bloqueada porque o Kommo exige 2FA na sessão
-(achado registrado no AGENTE-cadencias.md, seção "Mecânica do Kommo").
+Limpeza (concluída em 16/07): Teste Cad A, B, E e F excluídos pelo usuário em 15/07.
+Teste Cad D e Teste Luiz 1245 arquivados pelo agente em 16/07 — movidos para Perdido
+(motivo indefinido), tarefas pendentes concluídas e nota de arquivamento registrada em
+cada card (a exclusão via agente segue bloqueada pela exigência de 2FA; achado no
+AGENTE-cadencias.md, seção "Mecânica do Kommo"). Teste Cad C permanece fechado em
+Perdido desde o teste 12. Os três cards fechados ainda carregam tags D (D3/D6), por
+isso o relatório varre só leads ativos.
 
 ---
 
