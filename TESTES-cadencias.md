@@ -135,6 +135,17 @@ onde está.
 **Não aceito:** chutar um destino sem confiança.
 **Status:** ✅ (Teste Cad E: uma resposta "depois vemos" + silêncio → mantido na etapa, nota "REVISÃO MANUAL NECESSÁRIA")
 
+## Bloco E — Formato de saída (fix v1.1.1)
+
+### Teste 14 — Relatório no formato tabela + parágrafo crítico
+**Dado:** qualquer execução do `/cadencias` (sob demanda ou ciclo de loop) com leads na fila.
+**Espero:** saída com exatamente duas partes — tabela (Lead | Cadência | Vencimento, placar
+opcional de uma linha antes) e um parágrafo final de **até 250 caracteres** com o ponto
+crítico do dia (ou "Sem pontos críticos hoje.").
+**Não aceito:** texto corrido além do parágrafo final, parágrafo acima de 250 caracteres,
+seções extras, ou detalhes (IDs, evidências) sem o usuário pedir.
+**Status:** ☐
+
 ---
 
 ## Notas de execução

@@ -44,19 +44,35 @@ Nunca inferir toque sem evidência no card ("provavelmente falou") — sem sinal
 2. Calcular o status de cada lead (seção acima).
 3. Montar o relatório com **vencidos + vencendo hoje** (os em dia ficam de fora):
    - vencidos primeiro, do atraso mais antigo para o mais recente;
-   - depois os vencendo hoje;
-   - cada linha: lead, D atual, dias de atraso (se houver), último toque registrado.
-4. O relatório é leitura — **não alterar nenhum card durante o relatório**.
+   - depois os vencendo hoje.
+4. Entregar no **formato de saída** definido abaixo — sem prosa além do permitido.
+5. O relatório é leitura — **não alterar nenhum card durante o relatório**.
+
+## Formato de saída do relatório
+
+O relatório entregue ao usuário tem exatamente duas partes, nesta ordem:
+
+1. **Tabela** com três colunas: **Lead | Cadência | Vencimento**.
+   - Cadência = D atual (ex: D1).
+   - Vencimento = "vencido há N dias" ou "vence hoje".
+   - Uma linha de placar pode preceder a tabela (ex: "31 vencidos · 0 vencendo hoje").
+2. **Um parágrafo de até 250 caracteres** com o ponto crítico do dia — a anomalia,
+   decisão pendente ou mudança que mais merece atenção. Sem ponto crítico, uma linha:
+   "Sem pontos críticos hoje."
+
+Regras: nenhuma outra seção, nenhum texto corrido além do parágrafo final; detalhes
+extras (evidências, listas de IDs, achados secundários) só quando o usuário pedir.
 
 ## Modo loop (relatório recorrente)
 
 Quando o `/cadencias` roda via `/loop` (ex: `/loop 3h /cadencias` de manhã, na abertura
 da sessão):
 
-1. **Primeiro ciclo:** relatório completo, igual ao sob demanda.
-2. **Ciclos seguintes:** liderar com o **delta** — o que mudou desde o último ciclo
-   (quem saiu da fila por toque registrado, quem venceu agora, quem passou a vencer
-   hoje). A fila completa vem depois, resumida.
+1. **Primeiro ciclo:** relatório completo, igual ao sob demanda (mesmo formato de saída).
+2. **Ciclos seguintes:** mesmo formato de saída, com a tabela restrita a **quem mudou**
+   desde o último ciclo (saiu da fila, venceu agora, passou a vencer hoje) + uma linha
+   de placar da fila completa. Nada mudou → sem tabela, só o placar. O parágrafo final
+   de 250 caracteres lidera com o delta.
 3. Cada ciclo continua **somente leitura** — as regras do relatório valem inalteradas.
    O loop não dá ao agente nenhum poder novo; ele serve à meta operacional do usuário
    (critério de sucesso 7 da spec), não a persegue por conta própria.
